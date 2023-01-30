@@ -112,3 +112,15 @@ git clone https://github.com/mars-research/kvstore-artifacts.git
  ./fig2.sh
  ```
  - Figure 2 is written to `fig2.pdf`
+
+### Figures 7-14
+
+* To replicate all the hashtable benchmarks (Figures 7 to 14), invoke the
+  script that runs all the hashtable benchmarks, captures the csv output, and
+  plots the graph using gnuplot.
+
+ ```bash
+ cd ${HOME}/kvstore-artifacts/ht-bench.sh
+ ./ht-bench.sh
+ ```
+ - Figures are written to `fig${num}.pdf`

@@ -17,9 +17,8 @@ PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -d
 run_kmer_benchmarks() {
   pushd ${KVSTORE_DIR}
   rm -rf build
-  mkdir -p build && cd build
-  nix-shell --command "cmake ../ && make -j $(nproc)"
-  cd ..
+  mkdir -p build
+  nix-shell --command "cd build && cmake ../ && make -j $(nproc)"
   nix-shell --command "./run_test.sh kmer"
   popd
 }

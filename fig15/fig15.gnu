@@ -17,12 +17,12 @@ set xrange [10:]
 set loadpath '../plot-common'
 load 'xyborder.cfg'
 
-casht_insert="/opt/kvstore/build/cht-async.dat"
-casht_find="/opt/kvstore/build/cht-find.dat"
-cashtpp_insert="/opt/kvstore/build/chtpp-async.dat"
-cashtpp_find="/opt/kvstore/build/chtpp-find.dat"
-queues_insert="/opt/kvstore/build/bq-sync.dat"
-queues_find="/opt/kvstore/build/bq-find.dat"
+casht_insert="/opt/kvstore/kvstore/build/cht-async.dat"
+casht_find="/opt/kvstore/kvstore/build/cht-find.dat"
+cashtpp_insert="/opt/kvstore/kvstore/build/chtpp-async.dat"
+cashtpp_find="/opt/kvstore/kvstore/build/chtpp-find.dat"
+queues_insert="/opt/kvstore/kvstore/build/bq-sync.dat"
+queues_find="/opt/kvstore/kvstore/build/bq-find.dat"
 
 stats casht_insert using 1 name "casht_insert"
 stats casht_find using 1 name "casht_find"

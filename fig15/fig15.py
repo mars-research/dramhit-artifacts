@@ -35,10 +35,9 @@ CASHTPP_ARGS = '--ht-fill=75 --mode=11 --ht-type=3 --num-threads=64 --numa-split
 CASHT_ARGS = '--ht-fill=75 --mode=11 --ht-type=3 --num-threads=64 --numa-split=1 --skew=0.01 --no-prefetch=1'.split()
 
 if __name__ == '__main__':
-    os.chdir('/opt/kvstore')
+    os.chdir('/opt/kvstore/kvstore')
     if os.path.exists('build'):
         shutil.rmtree(pathlib.Path('build'))
-    
     os.mkdir('build')
     run(['nix-shell', '--command', 'cd build && cmake ../ -G Ninja -DLATENCY_COLLECTION=ON -DBQ_ZIPFIAN=ON && cmake --build .'])
     os.chdir('build')

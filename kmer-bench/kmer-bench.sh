@@ -8,7 +8,7 @@ KVSTORE_ARTIFACTS=${HOME}/kvstore-artifacts
 DATA_DIR=${KVSTORE_ARTIFACTS}/kmer-bench
 
 CHTKC_CSV=${DATA_DIR}/summary_chtkc.csv
-KVSTORE_CSV=${DATA_DIR}/part.csv
+KVSTORE_CSV=${DATA_DIR}/summary_kvstore.csv
 
 DATASETS=("dmela" "fvesca")
 
@@ -39,6 +39,26 @@ collect_csv_kmer() {
 
   if [[ -f ${SUMMARY_FVESCA_CSV} && -f ${SUMMARY_DMELA_CSV} ]]; then
     paste -d ',' ${SUMMARY_DMELA_CSV} ${SUMMARY_FVESCA_CSV} > ${CHTKC_CSV}
+  fi
+
+  CASHT_CSV="${KVSTORE_BASE}/kvstore/esys23-ae/casht-kmer-\${genome}/run1/summary_\${genome}.csv"
+  CASHTPP_CSV="${KVSTORE_BASE}/kvstore/esys23-ae/cashtpp-kmer-\${genome}/run1/summary_\${genome}.csv"
+  PART_CSV="${KVSTORE_BASE}/kvstore/esys23-ae/part-kmer-\${genome}/run1/summary_\${genome}.csv"
+
+  for genome in ${DATASETS[@]}; do
+    CASHT_GENOME_CSV=$(eval "echo ${CASHT_CSV}")
+    CASHTPP_GENOME_CSV=$(eval "echo ${CASHTPP_CSV}")
+    PART_GENOME_CSV=$(eval "echo ${PART_CSV}")
+
+    if [[ -f ${CASHT_GENOME_CSV} && -f ${CASHTPP_GENOME_CSV} && ${PART_GENOME_CSV} ]]; then
+      paste -d',' ${CASHT_GENOME_CSV} ${CASHTPP_GENOME_CSV} ${PART_GENOME_CSV} > ${KVSTORE_CSV}.${genome}
+    fi
+  done
+
+  paste -d',' ${KVSTORE_CSV}."dmela" ${KVSTORE_CSV}."fvesca" > ${KVSTORE_CSV}
+
+  if [[ -f ${CHTKC_CSV} && -f ${KVSTORE_CSV} ]];then
+    paste -d',' ${CHTKC_CSV} ${KVSTORE_CSV} > summary_kmer.csv
   fi
 }
 

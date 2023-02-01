@@ -14,12 +14,14 @@ set loadpath '../plot-common'
 load 'xyborder.cfg'
 #load 'ratio.cfg'
 
+set title "{/:Bold Figure 17.} K vs throughput (F.vesca f. semperflorens)"
+
 plot "summary_kmer.csv" \
-       using 1:2 title "Chtkc-o" \
+       using 1:4 title "Chtkc-o" \
        with lp ls 5 lw 5, \
-       '' using 1:6 title "Folklore"   \
+       '' using 1:12 title "Folklore"   \
        with lp ls 1 lw 5, \
-       '' using 1:4 title "KVStore"   \
+       '' using 1:14 title "KVStore"   \
        with lp ls 4 lw 5, \
-       '' using 1:8 title "KVStoreP"   \
+       '' using 1:16 title "KVStoreP"   \
        with lp ls 3 lw 5

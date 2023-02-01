@@ -23,7 +23,7 @@ run_ht_benchmarks() {
   mkdir -p build && cd build
   nix-shell --command "cmake ../ && make -j $(nproc)"
   cd ..
-  nix-shell --command "./run_test.sh"
+  nix-shell --command "./run_test.sh ht"
   popd
 }
 

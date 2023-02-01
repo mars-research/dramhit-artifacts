@@ -120,7 +120,19 @@ git clone https://github.com/mars-research/kvstore-artifacts.git
   plots the graph using gnuplot.
 
  ```bash
- cd ${HOME}/kvstore-artifacts/ht-bench.sh
+ cd ${HOME}/kvstore-artifacts/ht-bench
  ./ht-bench.sh
  ```
  - Figures are written to `fig${num}.pdf`
+
+### Figure 15
+
+* To generate the latency plot (Figures 15), invoke the script that runs all
+  the hashtable benchmarks, collects the latency metrics, and plots the graph
+  using gnuplot.
+
+ ```bash
+ cd ${HOME}/kvstore-artifacts/fig15/
+ ./fig15.sh
+ ```
+ - Figures are written to `fig15.pdf`

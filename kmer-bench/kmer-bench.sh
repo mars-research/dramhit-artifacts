@@ -80,8 +80,8 @@ plot_figure() {
 }
 
 plot_kmer() {
-  plot_figure "dmela.csv" "fig16"
-  plot_figure "fvesca.csv" "fig17"
+  plot_figure "summary_kmer.csv" "fig16"
+  plot_figure "summary_kmer.csv" "fig17"
 }
 
 run() {

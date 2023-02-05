@@ -18,7 +18,7 @@ run_kmer_benchmarks() {
   pushd ${KVSTORE_DIR}
   rm -rf build
   mkdir -p build
-  nix-shell --command "cd build && cmake ../ && make -j $(nproc)"
+  nix-shell --command "cd build && cmake -DBQ_KMER_TEST=ON ../ && make -j $(nproc)"
   nix-shell --command "./run_test.sh kmer"
   popd
 }

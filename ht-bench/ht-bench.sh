@@ -20,9 +20,10 @@ PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -d
 
 run_ht_benchmarks() {
   pushd ${KVSTORE_DIR}
-  mkdir -p build && cd build
-  nix-shell --command "cmake ../ && make -j $(nproc)"
-  cd ..
+  rm -rf build
+  mkdir -p build
+  nix-shell --command "cd build && cmake ../ && make -j $(nproc)"
+  sudo ./scripts/min-setup.sh
   nix-shell --command "./run_test.sh ht"
   popd
 }

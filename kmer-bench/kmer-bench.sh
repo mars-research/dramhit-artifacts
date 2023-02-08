@@ -19,6 +19,7 @@ run_kmer_benchmarks() {
   rm -rf build
   mkdir -p build
   nix-shell --command "cd build && cmake -DBQ_KMER_TEST=ON ../ && make -j $(nproc)"
+  sudo ./scripts/min-setup.sh
   nix-shell --command "./run_test.sh kmer"
   popd
 }

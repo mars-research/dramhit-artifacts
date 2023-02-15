@@ -10,11 +10,12 @@ SMALL_UNIF_CSV=${DATA_DIR}/small_ht.csv
 LARGE_SKEW_CSV=${DATA_DIR}/large_skewed_ht.csv
 SMALL_SKEW_CSV=${DATA_DIR}/small_skewed_ht.csv
 
-CASHT_LARGE_DATA="${KVSTORE_BASE}/kvstore/esys23-ae/casht_cashtpp-zipfian-large-0.01/run1"
-PART_LARGE_DATA="${KVSTORE_BASE}/kvstore/esys23-ae/part-zipfian-large-0.01-1:3/run1"
+LOG_PREFIX_DIR=esys23-ae-${USER}
+CASHT_LARGE_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/casht_cashtpp-zipfian-large-0.01/run1"
+PART_LARGE_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/part-zipfian-large-0.01-1:3/run1"
 
-CASHT_SMALL_DATA="${KVSTORE_BASE}/kvstore/esys23-ae/casht_cashtpp-zipfian-small-0.01/run1"
-PART_SMALL_DATA="${KVSTORE_BASE}/kvstore/esys23-ae/part-zipfian-small-0.01-1:3/run1"
+CASHT_SMALL_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/casht_cashtpp-zipfian-small-0.01/run1"
+PART_SMALL_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/part-zipfian-small-0.01-1:3/run1"
 
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 

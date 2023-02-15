@@ -11,6 +11,7 @@ FIG2_EPS=${FIG2_DATA}/fig2.eps
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 
 run_fig2() {
+  sudo ${KVSTORE_BASE}/kvstore/scripts/min-setup.sh
   pushd ${KVSTORE_BASE}/${FIG2_SRC}
   mkdir -p build && cd build
   nix-shell -p cmake gnuplot gnumake --command "cmake ../ && make -j $(nproc) && ./test |& tee -a ${FIG2_SMALL}"

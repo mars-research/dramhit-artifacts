@@ -21,9 +21,9 @@ All the experiments are evaluated on a Dell PowerEdge C6420 machine on the
   `Experiments > Create Experiment profile`
 
 * Select `Git Repo` and use this repository. The profile comes pre-installed
-  with source code for evaluating ksplit's static analysis.
+  with source code for evaluating KVStore hashtable.
 ```
-https://github.com/mars-research/ksplit-cloudlab
+https://github.com/mars-research/cloudlab-profiles
 ```
 * Populate the name field and click `Create`
 
@@ -61,7 +61,7 @@ https://github.com/mars-research/ksplit-cloudlab
 * A detailed log is available at `/users/geniuser/kvstore-verbose.log`
 
 * The script that gets executed after startup is available
-  [here](https://github.com/mars-research/ksplit-cloudlab/blob/kvstore-ae/kvstore-top.sh)
+  [here](https://github.com/mars-research/cloudlab-profiles/blob/kvstore-ae/kvstore-top.sh)
 
 * **NOTE** The automated script is executed by a different user (`geniuser`). If
   you need to manually build something under `/opt/kvstore` make sure to change
@@ -76,7 +76,7 @@ https://github.com/mars-research/ksplit-cloudlab
 ```
 mkdir /local
 # make sure you have permissions or use chown
-git clone https://github.com/mars-research/ksplit-cloudlab.git /local/respository --branch kvstore-ae
+git clone https://github.com/mars-research/cloudlab-profiles.git /local/respository --branch kvstore-ae
 # invoke the top level script
 /local/respository/kvstore-top.sh
 ```
@@ -88,12 +88,12 @@ git clone https://github.com/mars-research/ksplit-cloudlab.git /local/respositor
   aforementioned steps (i.e., using the git repo for creating the profile).
 
 * To create this setup manually,
-  - Clone https://github.com/mars-research/ksplit-cloudlab
+  - Clone https://github.com/mars-research/cloudlab-profiles
   - Make sure `/opt/kvstore` is writable
   - Execute `kvstore-top.sh`
 
-### Building KVStore
-* The pdg sources should automatically be built for you. If not, refer to the
+### Experiments
+* All the sources should automatically be built for you. If not, refer to the
   Prerequisites subsection above to set it up manually.
 
 * Clone the artifacts repository in your `${HOME}` directory. The scripts have
@@ -101,6 +101,11 @@ git clone https://github.com/mars-research/ksplit-cloudlab.git /local/respositor
 ```
 cd ${HOME}
 git clone https://github.com/mars-research/kvstore-artifacts.git
+```
+
+* Chown the source code to your user name
+```
+sudo chown -R <your-user-name>:<your-group> /opt/kvstore
 ```
 
 ### Figure 2

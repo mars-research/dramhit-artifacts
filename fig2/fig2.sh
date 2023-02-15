@@ -12,6 +12,7 @@ PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -d
 
 run_fig2() {
   sudo ${KVSTORE_BASE}/kvstore/scripts/min-setup.sh
+  sudo ${KVSTORE_BASE}/kvstore/scripts/prefetch_control.sh off
   pushd ${KVSTORE_BASE}/${FIG2_SRC}
   mkdir -p build && cd build
   nix-shell -p cmake gnuplot gnumake --command "cmake ../ && make -j $(nproc) && ./test |& tee -a ${FIG2_SMALL}"

@@ -107,6 +107,8 @@ git clone https://github.com/mars-research/kvstore-artifacts.git
 
 * To replicate figure 2 from the paper, please invoke this script which runs the
   benchmark, collects the results and plots the graph.
+  - Time taken: 2-3 hours
+
  ```bash
  cd ${HOME}/kvstore-artifacts/fig2
  ./fig2.sh
@@ -118,6 +120,7 @@ git clone https://github.com/mars-research/kvstore-artifacts.git
 * To replicate all the hashtable benchmarks (Figures 7 to 14), invoke the
   script that runs all the hashtable benchmarks, captures the csv output, and
   plots the graph using gnuplot.
+  - Time taken: 15 hours
 
  ```bash
  cd ${HOME}/kvstore-artifacts/ht-bench

@@ -48,10 +48,10 @@ collect_csv_uniform() {
 collect_csv_skewed() {
   if [[ -f ${LARGE_SKEW_CSV} ]]; then rm ${LARGE_SKEW_CSV}; fi
   if [[ -f ${SMALL_SKEW_CSV} ]]; then rm ${SMALL_SKEW_CSV}; fi
-  CASHT_SKEW_SMALL="${KVSTORE_BASE}/kvstore/esys23-ae/casht_cashtpp-zipfian-small-\${skew}/run1"
-  CASHT_SKEW_LARGE="${KVSTORE_BASE}/kvstore/esys23-ae/casht_cashtpp-zipfian-large-\${skew}/run1"
-  PART_SKEW_SMALL="${KVSTORE_BASE}/kvstore/esys23-ae/part-zipfian-small-\${skew}/run1"
-  PART_SKEW_LARGE="${KVSTORE_BASE}/kvstore/esys23-ae/part-zipfian-large-\${skew}/run1"
+  CASHT_SKEW_SMALL="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/casht_cashtpp-zipfian-small-\${skew}/run1"
+  CASHT_SKEW_LARGE="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/casht_cashtpp-zipfian-large-\${skew}/run1"
+  PART_SKEW_SMALL="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/part-zipfian-small-\${skew}/run1"
+  PART_SKEW_LARGE="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/part-zipfian-large-\${skew}/run1"
 
   pushd ${DATA_DIR}
   for skew in $(seq 0.2 0.2 0.6) $(seq 0.8 0.01 1.09); do

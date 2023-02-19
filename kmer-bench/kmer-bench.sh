@@ -35,7 +35,7 @@ run_chtkc_benchmarks() {
 }
 
 collect_csv_kmer() {
-  CHTKC_LOG_PREFIX="eys23-ae-${USER}/run"
+  CHTKC_LOG_PREFIX="esys23-ae-${USER}/run"
   SUMMARY_DMELA_CSV="${CHTKC_DIR}/${CHTKC_LOG_PREFIX}/summary_${DATASETS[0]}.csv"
   SUMMARY_FVESCA_CSV="${CHTKC_DIR}/${CHTKC_LOG_PREFIX}/summary_${DATASETS[1]}.csv"
 

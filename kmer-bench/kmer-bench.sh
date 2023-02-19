@@ -35,16 +35,17 @@ run_chtkc_benchmarks() {
 }
 
 collect_csv_kmer() {
-  SUMMARY_DMELA_CSV="${CHTKC_DIR}/summary_${DATASETS[0]}.csv"
-  SUMMARY_FVESCA_CSV="${CHTKC_DIR}/summary_${DATASETS[1]}.csv"
+  CHTKC_LOG_PREFIX="eys23-ae-${USER}/run"
+  SUMMARY_DMELA_CSV="${CHTKC_DIR}/${CHTKC_LOG_PREFIX}/summary_${DATASETS[0]}.csv"
+  SUMMARY_FVESCA_CSV="${CHTKC_DIR}/${CHTKC_LOG_PREFIX}/summary_${DATASETS[1]}.csv"
 
   if [[ -f ${SUMMARY_FVESCA_CSV} && -f ${SUMMARY_DMELA_CSV} ]]; then
     paste -d ',' ${SUMMARY_DMELA_CSV} ${SUMMARY_FVESCA_CSV} > ${CHTKC_CSV}
   fi
 
-  CASHT_CSV="${KVSTORE_BASE}/kvstore/esys23-ae/casht-kmer-\${genome}/run1/summary_\${genome}.csv"
-  CASHTPP_CSV="${KVSTORE_BASE}/kvstore/esys23-ae/cashtpp-kmer-\${genome}/run1/summary_\${genome}.csv"
-  PART_CSV="${KVSTORE_BASE}/kvstore/esys23-ae/part-kmer-\${genome}/run1/summary_\${genome}.csv"
+  CASHT_CSV="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/casht-kmer-\${genome}/run1/summary_\${genome}.csv"
+  CASHTPP_CSV="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/cashtpp-kmer-\${genome}/run1/summary_\${genome}.csv"
+  PART_CSV="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/part-kmer-\${genome}/run1/summary_\${genome}.csv"
 
   for genome in ${DATASETS[@]}; do
     CASHT_GENOME_CSV=$(eval "echo ${CASHT_CSV}")

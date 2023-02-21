@@ -133,6 +133,28 @@ sudo chown -R <your-user-name>:<your-group> /opt/kvstore
  ```
  - Figures are written to `fig${num}.pdf`
 
+* All the figures should have three line plots. If the figures are not
+  generated, the logs can possibly be corrupted due to failed or multiple
+  successful runs.
+  - In case of multiple successful runs, you can run the `prune-logs.sh` by
+    entering the logdir
+
+  ```
+  cd /opt/kvstore/kvstore/esys-ae-${USER}
+  ~/kvstore-artifacts/ht-bench/prune-logs.sh
+  ```
+    + Now you can re-run the `ht-bench.sh` script to generate the plots by
+      commenting out the `run_ht_benchmarks` function to avoid re-running the
+      data collection.
+
+      ```
+      #run_ht_benchmarks
+      ```
+  - In case of a failed or a partial run, you can remove or rename the log
+    folder (`/opt/kvstore/kvstore/esys-ae-${USER}`) and run the `ht-bench.sh`
+    script to re-run the experiments. There is a way to run only the unfinished
+    experiments, but that involves editing the script files manually.
+
 ### Figure 15
 
 * To generate the latency plot (Figures 15), invoke the script that runs all

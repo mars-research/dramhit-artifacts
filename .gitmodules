@@ -1,0 +1,11 @@
+[submodule "kvstore-incrementer"]
+	path = kvstore-incrementer
+	url = https://github.com/mars-research/kvstore-incrementer.git
+[submodule "chtkc"]
+	path = chtkc
+	url = https://github.com/mars-research/chtkc.git
+	branch = kmer-eval
+[submodule "kvstore"]
+	path = kvstore
+	url = https://github.com/mars-research/kvstore.git
+	branch = esys23-ae

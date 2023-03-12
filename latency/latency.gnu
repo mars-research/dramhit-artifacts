@@ -1,6 +1,6 @@
 reset
 set term postscript enhanced color eps 20 solid
-set output "fig15.eps"
+set output "latency.eps"
 
 set key right bottom font ",12"
 set datafile separator ","

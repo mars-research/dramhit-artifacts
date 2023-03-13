@@ -1,6 +1,6 @@
 #set size 1, 0.7
 
-set loadpath './plots'
+set loadpath '../plot-common'
 load 'xyborder.cfg'
 
 plot "uniform.csv" using 1:2 title "Folklore" \

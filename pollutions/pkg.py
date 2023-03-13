@@ -8,7 +8,7 @@ if __name__ == '__main__':
     mops_re = re.compile("set_mops : (\d+(?:.\d+)?), get_mops : (\d+(?:.\d+)?)")
     for filename in os.listdir():
         chunks = filename.split('-')
-        if chunks[0] not in {'queues', 'cht', 'chtpp'}:
+        if chunks[0] != 'pollute':
             continue
         
         with open(filename) as file:

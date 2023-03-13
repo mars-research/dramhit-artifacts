@@ -7,8 +7,12 @@ if __name__ == '__main__':
     data['queues'] = defaultdict(lambda : {})
     mops_re = re.compile("set_mops : (\d+(?:.\d+)?), get_mops : (\d+(?:.\d+)?)")
     for filename in os.listdir():
+        chunks = filename.split('-')
+        if chunks[0] not in {'queues', 'cht', 'chtpp'}:
+            continue
+        
         with open(filename) as file:
-            kind, n = filename.split('-')[1:]
+            kind, n = chunks[1:]
             n = int(n)
             for line in file.readlines():
                 result = mops_re.search(line)

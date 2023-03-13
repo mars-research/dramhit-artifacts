@@ -1,17 +1,20 @@
 import os
+import sys
 import re
+import pathlib
 from collections import defaultdict
 
 if __name__ == '__main__':
     data = defaultdict(lambda : {})
     data['queues'] = defaultdict(lambda : {})
     mops_re = re.compile("set_mops : (\d+(?:.\d+)?), get_mops : (\d+(?:.\d+)?)")
-    for filename in os.listdir():
+    for filename in os.listdir(sys.argv[1]):
         chunks = filename.split('-')
         if chunks[0] != 'pollute':
             continue
         
-        with open(filename) as file:
+        filepath = pathlib.Path(sys.argv[1]).joinpath(filename)
+        with open(filepath) as file:
             kind, n = chunks[1:]
             n = int(n)
             for line in file.readlines():

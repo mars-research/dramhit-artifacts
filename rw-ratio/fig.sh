@@ -7,7 +7,7 @@ PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -d
 run_fig() {
   pushd /opt/kvstore/build
   python ../scripts/generate-rw-runs.py $1 > runs.sh
-  #sh -x runs.sh
+  sh -x runs.sh
   popd
 }
 

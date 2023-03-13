@@ -15,7 +15,7 @@ unset key
 #set size ratio 0.3
 #set size 1, 0.7
 
-set loadpath './plots'
+set loadpath '../plot-common'
 load 'xyborder.cfg'
 
 plot "pollutions.csv" using 1:6 title "Folklore" \

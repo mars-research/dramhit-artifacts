@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-KVSTORE_BASE=/opt/kvstore
+KVSTORE_BASE=/opt/kvstore/kvstore
 
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 
 run_fig() {
-  pushd /opt/kvstore/build
+  pushd ${KVSTORE_BASE}/build
   python ../scripts/pollutions.py > runs.sh
   sh -x runs.sh
   popd
@@ -21,6 +21,6 @@ plot_fig() {
 }
 
 run_fig
-python pkg.py /opt/kvstore/build > pollutions.csv
-plot_fig set
-plot_fig get
+python pkg.py ${KVSTORE_BASE}/build > pollutions.csv
+plot_fig pollutions-set
+plot_fig pollutions-get

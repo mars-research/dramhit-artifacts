@@ -9,11 +9,11 @@ if __name__ == '__main__':
     data['queues'] = defaultdict(lambda : {})
     mops_re = re.compile("set_mops : (\d+(?:.\d+)?), get_mops : (\d+(?:.\d+)?)")
     for filename in os.listdir(sys.argv[1]):
-        chunks = filename.split('-')
-        if chunks[0] != 'pollute':
-            continue
-        
         filepath = pathlib.Path(sys.argv[1]).joinpath(filename)
+        chunks = filename.split('-')
+        if chunks[0] != 'pollute' or os.path.isdir(filepath) == True:
+            continue
+
         with open(filepath) as file:
             kind, n = chunks[1:]
             n = int(n)
@@ -26,7 +26,6 @@ if __name__ == '__main__':
                         data['queues'][int(kind[len('queues'):])][n] = (float(result[1]), float(result[2]))
 
                     break
-                
             #assert n in data[kind]
 
     queues = defaultdict(lambda : ([], []))

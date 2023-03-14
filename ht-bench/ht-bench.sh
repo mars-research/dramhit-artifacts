@@ -34,10 +34,13 @@ collect_csv_uniform() {
   if [[ -f ${LARGE_UNIF_CSV} ]]; then rm ${LARGE_UNIF_CSV}; fi
   if [[ -f ${SMALL_UNIF_CSV} ]]; then rm ${SMALL_UNIF_CSV}; fi
 
-  if [[ -d ${CASHT_LARGE_DATA} && -d ${PART_LARGE_DATA} && -d ${CASHT_SMALL_DATA} && -d ${PART_SMALL_DATA} ]]; then
+  if [[ -d ${CASHT_LARGE_DATA} && -d ${PART_LARGE_DATA} ]]; then
     if [[ -f ${CASHT_LARGE_DATA}/casht_run1.csv && -f ${CASHT_LARGE_DATA}/cashtpp_run1.csv && -f ${PART_LARGE_DATA}/part_run1.csv ]]; then
       paste -d',' ${CASHT_LARGE_DATA}/casht_run1.csv ${CASHT_LARGE_DATA}/cashtpp_run1.csv ${PART_LARGE_DATA}/part_run1.csv > ${LARGE_UNIF_CSV}
     fi
+  fi
+
+  if [[ -d ${CASHT_SMALL_DATA} && -d ${PART_SMALL_DATA} ]]; then
     if [[ -f ${CASHT_SMALL_DATA}/casht_run1.csv && -f ${CASHT_SMALL_DATA}/cashtpp_run1.csv && -f ${PART_SMALL_DATA}/part_run1.csv ]]; then
       paste -d',' ${CASHT_SMALL_DATA}/casht_run1.csv ${CASHT_SMALL_DATA}/cashtpp_run1.csv ${PART_SMALL_DATA}/part_run1.csv > ${SMALL_UNIF_CSV}
     fi

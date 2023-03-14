@@ -1,11 +1,11 @@
-[submodule "kvstore-incrementer"]
-	path = kvstore-incrementer
-	url = https://github.com/mars-research/kvstore-incrementer.git
+[submodule "dramhit-incrementer"]
+	path = dramhit-incrementer
+	url = https://github.com/mars-research/DRAMHiT-incrementer.git
 [submodule "chtkc"]
 	path = chtkc
 	url = https://github.com/mars-research/chtkc.git
 	branch = kmer-eval
-[submodule "kvstore"]
-	path = kvstore
-	url = https://github.com/mars-research/kvstore.git
+[submodule "dramhit"]
+	path = dramhit
+	url = https://github.com/mars-research/DRAMHiT.git
 	branch = esys23-ae

@@ -37,7 +37,7 @@ def main():
         data['queues'][pread] = best_mops
 
     print('p-read, cht, chtpp, queues')
-    for pread in data['queues']:
+    for pread in sorted(data['queues']):
         print(pread, data['cht'][pread], data['chtpp'][pread], data['queues'][pread], sep=', ')
 
 if __name__ == '__main__':

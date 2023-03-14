@@ -43,5 +43,5 @@ if __name__ == '__main__':
     inserts = {kind: list(zip(*sorted(inserts[kind], key=lambda v : v[0]))) for kind in inserts}
 
     print('pollutions, queue_set, queue_get, chtpp_set, chtpp_get, cht_set, chtpp_get')
-    for i, p in enumerate(finds['queues'][0]):
+    for i, p in sorted(enumerate(finds['queues'][0]), key=lambda v : v[0]):
         print(f"{p}, {inserts['queues'][1][i]}, {finds['queues'][1][i]}, {inserts['chtpp'][1][i]}, {finds['chtpp'][1][i]}, {inserts['cht'][1][i]}, {finds['cht'][1][i]}")

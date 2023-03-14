@@ -1,21 +1,21 @@
 #!/bin/bash
 #
-KVSTORE_BASE=/opt/kvstore
-KVSTORE_DIR=${KVSTORE_BASE}/kvstore
-KVSTORE_ARTIFACTS=${HOME}/kvstore-artifacts
-DATA_DIR=${KVSTORE_ARTIFACTS}/batching
+DRAMHIT_BASE=/opt/dramhit
+DRAMHIT_DIR=${DRAMHIT_BASE}/dramhit
+DRAMHIT_ARTIFACTS=${HOME}/dramhit-artifacts
+DATA_DIR=${DRAMHIT_ARTIFACTS}/batching
 
 BATCHING_CSV=${DATA_DIR}/batching.csv
 
 LOG_PREFIX_DIR=esys23-ae-${USER}
-CASHTPP_LARGE_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/cashtpp-zipfian-large-0.01-batching/run1"
-PART_LARGE_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/part-zipfian-large-0.01-1:3-batching/run1"
+CASHTPP_LARGE_DATA="${DRAMHIT_DIR}/${LOG_PREFIX_DIR}/cashtpp-zipfian-large-0.01-batching/run1"
+PART_LARGE_DATA="${DRAMHIT_DIR}/${LOG_PREFIX_DIR}/part-zipfian-large-0.01-1:3-batching/run1"
 
 
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 
 run_ht_benchmarks() {
-  pushd ${KVSTORE_DIR}
+  pushd ${DRAMHIT_DIR}
   rm -rf build
   mkdir -p build
   nix-shell --command "cd build && cmake ../ && make -j $(nproc)"

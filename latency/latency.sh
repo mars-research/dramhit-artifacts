@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-KVSTORE_BASE=/opt/kvstore
+DRAMHIT_BASE=/opt/dramhit
 
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 LATENCY_EPS="latency.eps"

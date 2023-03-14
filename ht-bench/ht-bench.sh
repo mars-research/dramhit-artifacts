@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-KVSTORE_BASE=/opt/kvstore
-KVSTORE_DIR=${KVSTORE_BASE}/kvstore
-KVSTORE_ARTIFACTS=${HOME}/kvstore-artifacts
-DATA_DIR=${KVSTORE_ARTIFACTS}/ht-bench
+DRAMHIT_BASE=/opt/dramhit
+DRAMHIT_DIR=${DRAMHIT_BASE}/dramhit
+DRAMHIT_ARTIFACTS=${HOME}/dramhit-artifacts
+DATA_DIR=${DRAMHIT_ARTIFACTS}/ht-bench
 LARGE_UNIF_CSV=${DATA_DIR}/large_ht.csv
 SMALL_UNIF_CSV=${DATA_DIR}/small_ht.csv
 
@@ -11,16 +11,16 @@ LARGE_SKEW_CSV=${DATA_DIR}/large_skewed_ht.csv
 SMALL_SKEW_CSV=${DATA_DIR}/small_skewed_ht.csv
 
 LOG_PREFIX_DIR=esys23-ae-${USER}
-CASHT_LARGE_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/casht_cashtpp-zipfian-large-0.01/run1"
-PART_LARGE_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/part-zipfian-large-0.01-1:3/run1"
+CASHT_LARGE_DATA="${DRAMHIT_DIR}/${LOG_PREFIX_DIR}/casht_cashtpp-zipfian-large-0.01/run1"
+PART_LARGE_DATA="${DRAMHIT_DIR}/${LOG_PREFIX_DIR}/part-zipfian-large-0.01-1:3/run1"
 
-CASHT_SMALL_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/casht_cashtpp-zipfian-small-0.01/run1"
-PART_SMALL_DATA="${KVSTORE_DIR}/${LOG_PREFIX_DIR}/part-zipfian-small-0.01-1:3/run1"
+CASHT_SMALL_DATA="${DRAMHIT_DIR}/${LOG_PREFIX_DIR}/casht_cashtpp-zipfian-small-0.01/run1"
+PART_SMALL_DATA="${DRAMHIT_DIR}/${LOG_PREFIX_DIR}/part-zipfian-small-0.01-1:3/run1"
 
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 
 run_ht_benchmarks() {
-  pushd ${KVSTORE_DIR}
+  pushd ${DRAMHIT_DIR}
   rm -rf build
   mkdir -p build
   nix-shell --command "cd build && cmake ../ && make -j $(nproc)"
@@ -51,10 +51,10 @@ collect_csv_uniform() {
 collect_csv_skewed() {
   if [[ -f ${LARGE_SKEW_CSV} ]]; then rm ${LARGE_SKEW_CSV}; fi
   if [[ -f ${SMALL_SKEW_CSV} ]]; then rm ${SMALL_SKEW_CSV}; fi
-  CASHT_SKEW_SMALL="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/casht_cashtpp-zipfian-small-\${skew}/run1"
-  CASHT_SKEW_LARGE="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/casht_cashtpp-zipfian-large-\${skew}/run1"
-  PART_SKEW_SMALL="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/part-zipfian-small-\${skew}/run1"
-  PART_SKEW_LARGE="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/part-zipfian-large-\${skew}/run1"
+  CASHT_SKEW_SMALL="${DRAMHIT_BASE}/dramhit/esys23-ae-${USER}/casht_cashtpp-zipfian-small-\${skew}/run1"
+  CASHT_SKEW_LARGE="${DRAMHIT_BASE}/dramhit/esys23-ae-${USER}/casht_cashtpp-zipfian-large-\${skew}/run1"
+  PART_SKEW_SMALL="${DRAMHIT_BASE}/dramhit/esys23-ae-${USER}/part-zipfian-small-\${skew}/run1"
+  PART_SKEW_LARGE="${DRAMHIT_BASE}/dramhit/esys23-ae-${USER}/part-zipfian-large-\${skew}/run1"
 
   pushd ${DATA_DIR}
   for skew in $(seq 0.2 0.2 0.6) $(seq 0.8 0.01 1.09); do

@@ -1,21 +1,21 @@
 #!/bin/bash
 #
-KVSTORE_BASE=/opt/kvstore
-KVSTORE_DIR=${KVSTORE_BASE}/kvstore
-CHTKC_DIR=${KVSTORE_BASE}/chtkc
+DRAMHIT_BASE=/opt/dramhit
+DRAMHIT_DIR=${DRAMHIT_BASE}/dramhit
+CHTKC_DIR=${DRAMHIT_BASE}/chtkc
 
-KVSTORE_ARTIFACTS=${HOME}/kvstore-artifacts
-DATA_DIR=${KVSTORE_ARTIFACTS}/kmer-bench
+DRAMHIT_ARTIFACTS=${HOME}/dramhit-artifacts
+DATA_DIR=${DRAMHIT_ARTIFACTS}/kmer-bench
 
 CHTKC_CSV=${DATA_DIR}/summary_chtkc.csv
-KVSTORE_CSV=${DATA_DIR}/summary_kvstore.csv
+DRAMHIT_CSV=${DATA_DIR}/summary_dramhit.csv
 
 DATASETS=("dmela" "fvesca")
 
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 
 run_kmer_benchmarks() {
-  pushd ${KVSTORE_DIR}
+  pushd ${DRAMHIT_DIR}
   rm -rf build
   mkdir -p build
   nix-shell --command "cd build && cmake -DAGGR=ON -DBQ_KMER_TEST=ON ../ && make -j $(nproc)"
@@ -43,9 +43,9 @@ collect_csv_kmer() {
     paste -d ',' ${SUMMARY_DMELA_CSV} ${SUMMARY_FVESCA_CSV} > ${CHTKC_CSV}
   fi
 
-  CASHT_CSV="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/casht-kmer-\${genome}/run1/summary_\${genome}.csv"
-  CASHTPP_CSV="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/cashtpp-kmer-\${genome}/run1/summary_\${genome}.csv"
-  PART_CSV="${KVSTORE_BASE}/kvstore/esys23-ae-${USER}/part-kmer-\${genome}/run1/summary_\${genome}.csv"
+  CASHT_CSV="${DRAMHIT_BASE}/dramhit/esys23-ae-${USER}/casht-kmer-\${genome}/run1/summary_\${genome}.csv"
+  CASHTPP_CSV="${DRAMHIT_BASE}/dramhit/esys23-ae-${USER}/cashtpp-kmer-\${genome}/run1/summary_\${genome}.csv"
+  PART_CSV="${DRAMHIT_BASE}/dramhit/esys23-ae-${USER}/part-kmer-\${genome}/run1/summary_\${genome}.csv"
 
   for genome in ${DATASETS[@]}; do
     CASHT_GENOME_CSV=$(eval "echo ${CASHT_CSV}")
@@ -53,14 +53,14 @@ collect_csv_kmer() {
     PART_GENOME_CSV=$(eval "echo ${PART_CSV}")
 
     if [[ -f ${CASHT_GENOME_CSV} && -f ${CASHTPP_GENOME_CSV} && ${PART_GENOME_CSV} ]]; then
-      paste -d',' ${CASHT_GENOME_CSV} ${CASHTPP_GENOME_CSV} ${PART_GENOME_CSV} > ${KVSTORE_CSV}.${genome}
+      paste -d',' ${CASHT_GENOME_CSV} ${CASHTPP_GENOME_CSV} ${PART_GENOME_CSV} > ${DRAMHIT_CSV}.${genome}
     fi
   done
 
-  paste -d',' ${KVSTORE_CSV}."dmela" ${KVSTORE_CSV}."fvesca" > ${KVSTORE_CSV}
+  paste -d',' ${DRAMHIT_CSV}."dmela" ${DRAMHIT_CSV}."fvesca" > ${DRAMHIT_CSV}
 
-  if [[ -f ${CHTKC_CSV} && -f ${KVSTORE_CSV} ]];then
-    paste -d',' ${CHTKC_CSV} ${KVSTORE_CSV} > summary_kmer.csv
+  if [[ -f ${CHTKC_CSV} && -f ${DRAMHIT_CSV} ]];then
+    paste -d',' ${CHTKC_CSV} ${DRAMHIT_CSV} > summary_kmer.csv
   fi
 }
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 #
-KVSTORE_BASE=/opt/kvstore
+DRAMHIT_BASE=/opt/dramhit
 FIG2_SRC=incrementer
-KVSTORE_ARTIFACTS=${HOME}/kvstore-artifacts
-FIG2_DATA=${KVSTORE_ARTIFACTS}/fig2
+DRAMHIT_ARTIFACTS=${HOME}/dramhit-artifacts
+FIG2_DATA=${DRAMHIT_ARTIFACTS}/fig2
 FIG2_SMALL=${FIG2_DATA}/fig2_32mb.csv
 FIG2_BIG=${FIG2_DATA}/fig2_1gb.csv
 FIG2_EPS=${FIG2_DATA}/fig2.eps
@@ -11,9 +11,9 @@ FIG2_EPS=${FIG2_DATA}/fig2.eps
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 
 run_fig2() {
-  sudo ${KVSTORE_BASE}/kvstore/scripts/min-setup.sh
-  sudo ${KVSTORE_BASE}/kvstore/scripts/prefetch_control.sh off
-  pushd ${KVSTORE_BASE}/${FIG2_SRC}
+  sudo ${DRAMHIT_BASE}/dramhit/scripts/min-setup.sh
+  sudo ${DRAMHIT_BASE}/dramhit/scripts/prefetch_control.sh off
+  pushd ${DRAMHIT_BASE}/${FIG2_SRC}
   mkdir -p build && cd build
   nix-shell -p cmake gnuplot gnumake --command "cmake ../ && make -j $(nproc) && ./test |& tee -a ${FIG2_SMALL}"
   nix-shell -p cmake gnuplot gnumake --command "./test big |& tee -a ${FIG2_BIG}"

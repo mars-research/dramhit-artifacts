@@ -1,14 +1,14 @@
 #!/bin/bash
 #
-KVSTORE_BASE=/opt/kvstore
-KVSTORE_DIR=${KVSTORE_BASE}/kvstore
-KVSTORE_ARTIFACTS=${HOME}/kvstore-artifacts
-KVSTORE_BUILD_DIR=${KVSTORE_DIR}/build
+DRAMHIT_BASE=/opt/dramhit
+DRAMHIT_DIR=${DRAMHIT_BASE}/dramhit
+DRAMHIT_ARTIFACTS=${HOME}/dramhit-artifacts
+DRAMHIT_BUILD_DIR=${DRAMHIT_DIR}/build
 
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 
 run_fig() {
-  pushd ${KVSTORE_BUILD_DIR}
+  pushd ${DRAMHIT_BUILD_DIR}
   python ../scripts/generate-rw-runs.py $1 > runs.sh
   sh -x runs.sh
   popd
@@ -24,8 +24,8 @@ plot_fig() {
 }
 
 run_fig 0.01
-python pkg.py ${KVSTORE_BUILD_DIR} > uniform.csv
+python pkg.py ${DRAMHIT_BUILD_DIR} > uniform.csv
 run_fig 1.09
-python pkg.py ${KVSTORE_BUILD_DIR} > skewed.csv
+python pkg.py ${DRAMHIT_BUILD_DIR} > skewed.csv
 plot_fig rw-uniform
 plot_fig rw-skewed

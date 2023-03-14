@@ -24,8 +24,8 @@ plot_fig() {
 }
 
 run_fig 0.01
-python pkg.py /opt/kvstore/build > uniform.csv
+python pkg.py ${KVSTORE_BUILD_DIR} > uniform.csv
 run_fig 1.09
-python pkg.py /opt/kvstore/build > skewed.csv
+python pkg.py ${KVSTORE_BUILD_DIR} > skewed.csv
 plot_fig rw-uniform
 plot_fig rw-skewed

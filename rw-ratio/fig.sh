@@ -1,11 +1,14 @@
 #!/bin/bash
 #
 KVSTORE_BASE=/opt/kvstore
+KVSTORE_DIR=${KVSTORE_BASE}/kvstore
+KVSTORE_ARTIFACTS=${HOME}/kvstore-artifacts
+KVSTORE_BUILD_DIR=${KVSTORE_DIR}/build
 
 PS2PDF_FLAGS="-dEPSCrop -dPDFSETTINGS=/printer -dColorConversionStrategy=/RGB -dProcessColorModel=/DeviceRGB -dEmbedAllFonts=true -dSubsetFonts=true -dMaxSubsetPct=100"
 
 run_fig() {
-  pushd /opt/kvstore/build
+  pushd ${KVSTORE_BUILD_DIR}
   python ../scripts/generate-rw-runs.py $1 > runs.sh
   sh -x runs.sh
   popd
@@ -24,5 +27,5 @@ run_fig 0.01
 python pkg.py /opt/kvstore/build > uniform.csv
 run_fig 1.09
 python pkg.py /opt/kvstore/build > skewed.csv
-plot_fig uniform
-plot_fig skewed
+plot_fig rw-uniform
+plot_fig rw-skewed
